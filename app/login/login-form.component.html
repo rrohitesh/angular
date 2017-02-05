@@ -1,0 +1,48 @@
+<div class="login-container">
+    <div class="text-center">
+<img src="./app/images/bosch-logo.jpg" alt="Mountain View" style="width:150px;height:100px;">
+    </div>
+<div class="panel panel-primary">
+  <div class="panel-heading">Login</div>
+  <div class="panel-body">
+<form [formGroup]="loginForm" (ngSubmit)=login()>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input 
+            id="username" 
+            type="text" 
+            class="form-control"
+            formControlName="username"
+            > 
+          <div *ngIf="loginForm.controls.username.touched && loginForm.controls.username.errors" >  
+            <div  class="alert alert-danger" role="alert" 
+                *ngIf="loginForm.controls.username.errors.required">
+                Username required
+                </div>
+                 <div  class="alert alert-danger" role="alert" 
+                 *ngIf="loginForm.controls.username.errors.cannotContainSpace">
+                Username Cannot  ContainSpace
+                </div>
+           </div>  
+    </div>
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input 
+            id="password" 
+            type="text" 
+            class="form-control"
+            formControlName="password"
+        >
+             <div *ngIf="loginForm.controls.password.touched">  
+            <div  class="alert alert-danger" role="alert" *ngIf="!loginForm.controls.password.valid">
+                Password required
+                </div>
+             </div>
+    </div>
+    <div class="text-center">
+    <button class="btn btn-primary" [disabled]="!loginForm.valid" type="submit">Login</button>
+    </div>
+</form>
+  </div>
+
+</div>
